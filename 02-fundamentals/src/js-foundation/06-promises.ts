@@ -1,19 +1,19 @@
-const getPokemonById = ( id ) =>{
+import { http } from "../plugins";
+
+export const getPokemonById = ( id:string|number ):void =>{
 
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
 
     fetch(url).then((response)=>{
 
         response.json().then((pokemon)=>{
-            console.log(pokemon.name)
+            console.log('>',pokemon.name)
 
         })
     });
-
-    return `Pokemon ${id}:`
 }
 
-const getPokemonByIdCallBack =(id, callback)=>{
+export const getPokemonByIdCallBack =(id:number, callback:any)=>{
     
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
 
@@ -27,7 +27,7 @@ const getPokemonByIdCallBack =(id, callback)=>{
     });
 }
 
-const getPokemonById2 = ( id ) =>{
+export const getPokemonById2 = ( id:number ) =>{
 
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
 
@@ -38,23 +38,13 @@ const getPokemonById2 = ( id ) =>{
 
 }
 
-const getPokemonByIdAsync = async( id ) =>{
+export const getPokemonByIdAsync = async( id:number ) =>{
 
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
 
-    const response = await fetch(url);
-
-    const pokemon = await response.json();
-
-    // throw new Error('Pokemon no  existe');
+    const pokemon = await http.get(url);
 
     return pokemon.name;
 
 }
 
-module.exports = {
-    getPokemonById,
-    getPokemonByIdCallBack,
-    getPokemonById2,
-    getPokemonByIdAsync
-}
