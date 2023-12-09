@@ -4,18 +4,24 @@
   "description": "Learning node",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "dev": "nodemon app.js",
     "build": "rimraf ./dist && tsc",
-    "start": "node src/app.js"
+    "start": "node dist/app.js"
   },
   "author": "Jorge Alfaro",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^29.5.8",
     "@types/node": "^20.9.0",
     "@types/uuid": "^9.0.7",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
     "rimraf": "^5.0.5",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },

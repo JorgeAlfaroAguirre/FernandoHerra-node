@@ -1,8 +1,8 @@
-interface User {
+interface ICat {
     id: number,
     name:string
 }
- const users: User[] = [
+ const Cats: ICat[] = [
     {
         id:1,
         name: 'Warren'
@@ -17,14 +17,22 @@ interface User {
     },
 ];
 
-export function getUserById( id:number, callback: (err?: string, user?:User)=>void ){
-    const user = users.find( function(user){
-        return user.id === id;
+export function getCatById( id:number, callback: (err?: string, user?:ICat)=>void ){
+    const cat = Cats.find( function(cat){
+        return cat.id === id;
     });
 
-    if(!user){
-        return callback(`USER NOT FOUND ${id}`);
+    if(!cat){
+
+        // return callback(`Cat with ID ${id} not found.`);
+        
+        setTimeout(()=>{
+            callback(`Cat with ID ${id} not found.`)
+        }, 2500);
+
+        return;  
+
     }
     
-    return callback(undefined, user);
+    return callback(undefined, cat);
 }

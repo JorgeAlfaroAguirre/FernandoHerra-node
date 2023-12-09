@@ -1,14 +1,7 @@
-// console.log( process.env );
 
+//const { SHELL, HOMEBREW_PREFIX, npm_lifecycle_script } = process.env;
 
-const { SHELL, HOMEBREW_PREFIX, npm_lifecycle_script } = process.env;
+export const cats:string[] = ['Warren','Sofia', 'Pepita'];
 
-// console.table({ SHELL, HOMEBREW_PREFIX, npm_lifecycle_script });
+export const [ , Orange ] = cats;
 
-
-const characters:string[] = ['Flash','Superman', 'Green Lantern', 'Batman'];
-
-const [ , , ,batman ] = characters;
-
-
-// console.log(batman);

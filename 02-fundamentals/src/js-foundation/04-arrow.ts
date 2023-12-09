@@ -1,9 +1,9 @@
-interface User {
+interface ICat {
     id: number,
     name:string
 }
 
-const users: User[] = [
+const cats: ICat[] = [
     {
         id:1,
         name: 'Warren'
@@ -18,9 +18,9 @@ const users: User[] = [
     },
 ];
 
-export const getUserByIdArrow = ( id: number, callback: (err?: string, user?:User)=>void )=>{
+export const getUserByIdArrow = ( id: number, callback: (err?: string, user?:ICat)=>void )=>{
     
-    const user = users.find((user)=>user.id === id);
+    const cat = cats.find((cat)=>cat.id === id);
 
-    (user)? callback(undefined, user):callback(`No use with id ${id}`);
+    (cat)? callback(undefined, cat):callback(`No use with id ${id}`);
 }
