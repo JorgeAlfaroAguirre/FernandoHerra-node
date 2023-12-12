@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for 03-callbacks.ts</title>
+    <title>Code coverage report for logger.plugin.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> 03-callbacks.ts</h1>
+        <h1><a href="index.html">All files</a> logger.plugin.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.11% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/38</span>
+                <span class='fraction'>31/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/38</span>
+                <span class='fraction'>31/36</span>
             </div>
         
             
@@ -98,10 +98,9 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -122,69 +121,61 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">interface ICat {
-    id: number,
-    name:string
-}
- const Cats: ICat[] = [
-    {
-        id:1,
-        name: 'Warren'
-    },
-    {
-        id:2,
-        name: 'Sofia'
-    },
-    {
-        id:3,
-        name: 'Pepita'
-    },
-];
+<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import winston, { format } from 'winston';
+const { combine, timestamp, json } = format;
 &nbsp;
-export function getCatById( id:number, callback: (err?: string, user?:ICat)=&gt;void ){
-    const cat = Cats.find( function(cat){
-        return cat.id === id;
-    });
+export const logger = winston.createLogger({
+  level: 'info',
+  format: combine(
+    timestamp(),
+    json(),
+  ),
+//   defaultMeta: { service: 'user-service' },
+  transports: [
+    //
+    // - Write all logs with importance level of `error` or less to `error.log`
+    // - Write all logs with importance level of `info` or less to `combined.log`
+    //
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' }),
+  ],
+});
 &nbsp;
-    if(!cat){
+export const buildLogger= ( service:string )=&gt;{
 &nbsp;
-        // return callback(`Cat with ID ${id} not found.`);
-        
-        setTimeout(()=&gt;{
-            callback(`Cat with ID ${id} not found.`)
-        }, 2500);
-&nbsp;
-        return;  
-&nbsp;
+    return {
+        log: ( message: string )=&gt;{
+            logger.log('info', {message, service} )
+        },
+        error: <span class="fstat-no" title="function not covered" >( message: string ) =&gt;{</span>
+<span class="cstat-no" title="statement not covered" >            logger.error('error', { </span>
+<span class="cstat-no" title="statement not covered" >                message, </span>
+<span class="cstat-no" title="statement not covered" >                service,</span>
+<span class="cstat-no" title="statement not covered" >                // at: new Date().toISOString()</span>
+<span class="cstat-no" title="statement not covered" >            });</span>
+        },
     }
-    
-    return callback(undefined, cat);
-}
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-09T17:45:06.632Z
+                at 2023-12-11T02:50:42.256Z
             </div>
         <script src="prettify.js"></script>
         <script>

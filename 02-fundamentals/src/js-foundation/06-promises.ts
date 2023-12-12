@@ -1,19 +1,16 @@
-import { http } from "../plugins";
+// import { http } from "../plugins";
+import {httpClientPlugin as http} from '../plugins/htttp-client-plugin'
 
-export const getPokemonById = ( id:string|number ):void =>{
+const getPokemonById = ( id:number ):Promise<string> =>{
 
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
 
-    fetch(url).then((response)=>{
+    return fetch(url)
+        .then(response => response.json())
+        .then(pokemon => pokemon.name);
+};
 
-        response.json().then((pokemon)=>{
-            console.log('>',pokemon.name)
-
-        })
-    });
-}
-
-export const getPokemonByIdCallBack =(id:number, callback:any)=>{
+const getPokemonByIdCallBack =(id:number, callback:any)=>{
     
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
 
@@ -27,7 +24,7 @@ export const getPokemonByIdCallBack =(id:number, callback:any)=>{
     });
 }
 
-export const getPokemonById2 = ( id:number ) =>{
+const getPokemonById2 = ( id:number ) =>{
 
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
 
@@ -38,13 +35,26 @@ export const getPokemonById2 = ( id:number ) =>{
 
 }
 
-export const getPokemonByIdAsync = async( id:number ) =>{
+const getPokemonByIdAsync = async( id:number ) =>{
 
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    try {
+        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    
+        const pokemon = await http.get(url);
+    
+        return pokemon.name;
+        
+    } catch (error) {
+        throw `Pokemon not found with id ${id}`
+    }
 
-    const pokemon = await http.get(url);
-
-    return pokemon.name;
 
 }
 
+export {
+    getPokemonById,
+    getPokemonByIdCallBack,
+    getPokemonById2,
+    getPokemonByIdAsync
+
+}

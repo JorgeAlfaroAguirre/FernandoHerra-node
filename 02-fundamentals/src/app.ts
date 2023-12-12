@@ -1,51 +1,8 @@
-import { emailTemplate } from "./js-foundation/01-template";
-import { Orange } from "./js-foundation/02-destructuring";
-import { getCatById } from "./js-foundation/03-callbacks";
-
-
-console.log('\n-----------------------------1--------------------------------\n');
-
-console.log(emailTemplate('testName', 123));
-
-console.log('\n-----------------------------2--------------------------------\n');
-
-console.log(Orange);
-
-console.log('\n-----------------------------3--------------------------------\n');
-
-const catId = 1;
-
-getCatById(catId, function(error, cat){
-    if( error ){
-        throw new Error(error);
-    }
-    console.log(cat);
-})
-
-const warren = getCatById(2, function(error, cat){
-    if( error ){
-        throw new Error(error);
-    }
-    console.log(cat);
-})
-
-console.log('\n-----------------------------4--------------------------------\n');
 
 
 
 
-// const { getUserByIdArrow } = require('./js-foundation/04-arrow');
-// const { buildMakePerson } = require('./js-foundation/05-factory');
-// // const { getUUID, 
-// //         getAge, 
-// //         http,
-// //         buildLogger
-// //         } = require('./plugins');
-
-// import { getUserById } from "./js-foundation/03-callbacks";
-// import { getUserByIdArrow } from "./js-foundation/04-arrow";
-// import { buildMakePerson } from "./js-foundation/05-factory";
-// import { getPokemonById, getPokemonByIdAsync, getPokemonByIdCallBack } from "./js-foundation/06-promises";
+import { getPokemonById, getPokemonById2, getPokemonByIdAsync, getPokemonByIdCallBack } from "./js-foundation/06-promises";
 // import { getPokemonNameByIdWithPlugin } from "./js-foundation/07-promises-with-plugin";
 // import { getAge, getUUID } from "./plugins";
 // import { buildLogger } from "./plugins/logger.plugin"
@@ -55,53 +12,53 @@ console.log('\n-----------------------------4--------------------------------\n'
 // // const { getPokemonByIdWithPlugin, 
 // //         getPokemonByIdWithAxiosPlugin } = require('./js-foundation/07-promises-with-plugin')
 
-// // //2
 
-// // const { getPokemonById, 
-// //         getPokemonByIdCallBack,
-// //         getPokemonById2,
-// //         getPokemonByIdAsync
-// //     } = require('./js-foundation/06-promises') 
-
-// // //3
+getPokemonById(1).then(name => console.log(name));
 
 
+// getPokemonByIdCallBack(1,(pokemon:string)=>console.log({pokemon}));
 
-// console.log('\n-----------------------------1--------------------------------\n')
+// getPokemonById2(2)
+//     .then((pokemon)=>console.log({pokemon}))
 
-// // console.log(emailTemplate)
+// const porque = async (id:number)=>{
+//     const pokemonName = await getPokemonByIdAsync(id);
+  
+//     console.log(`El nombre del Pokémon es: ${pokemonName}`);
+// }
 
+// porque(5)
 
+// getPokemonById2(2)
+    // .then((pokemon)=>console.log({pokemon}))
 
-// getUserByIdArrow(id, (error, user)=>{
-//     if( error ){
-//         throw new Error(error);
+// const getPokemonInfo = async () => {
+//     try {
+//       const pokemonName = await getPokemonByIdAsync(1);
+  
+//       console.log(`El nombre del Pokémon es: ${pokemonName}`);
+//     } catch (error) {
+//       console.error('Hubo un error:', error);
 //     }
-//     console.log(user)
-// })
-
-// const makePerson = buildMakePerson( {getUUID, getAge} ); //Inyección de dependencias de getUUID, y getAge
-
-// const jorge = makePerson({ name: 'Jorge', birthdate: '1988-01-16'});
-
-// console.log(jorge);
-
-// // console.log('\n-----------------------------2--------------------------------\n')
+//   };
+  
+// getPokemonInfo();
 
 
-// // // console.log(getPokemonById(1));
+// const aer = async (id:number)=>{
+//     const pokemonName = await getPokemonByIdAsync(id);
+  
+//     console.log(`El nombre del Pokémon es: ${pokemonName}`);
+// }
 
-// getPokemonByIdCallBack(1, ( pokemon: any )=>{
-//     console.log({pokemon})
-// })
+// aer(1)
 
-// getPokemonById(2);
 
-// // getPokemonById2(1)
-// //     .then((pokemon)=>console.log({pokemon}))
-// //     .catch( ( error ) => console.log('Por favor intente de nuevo'))
-// //     // .catch( ( error ) => console.log( { error } ) )
-// //     .finally( ()=>console.log('Finalmente'))
+// getPokemonById2(1)
+//     .then((pokemon)=>console.log({pokemon}))
+//     .catch( ( error ) => console.log('Por favor intente de nuevo'))
+//     // .catch( ( error ) => console.log( { error } ) )
+//     .finally( ()=>console.log('Finalmente'))
 
 
 // getPokemonByIdAsync(4)
