@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { yarg } from './config/plugins/yarg.plugin';
+import { yarg } from './config/plugins/args.plugin';
 
 // console.log(yarg);
 

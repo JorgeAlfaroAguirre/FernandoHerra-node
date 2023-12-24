@@ -1,4 +1,4 @@
-import { CreateTable } from "../domain/use-cases/create-table.use-case";
+import { CreateTable } from "../domain/use-cases/create-file.use-case";
 import { SaveFile } from "../domain/use-cases/save-file.use-case";
 
 interface RunOtpions{

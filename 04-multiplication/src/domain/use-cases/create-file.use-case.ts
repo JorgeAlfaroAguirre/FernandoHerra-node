@@ -5,9 +5,6 @@ export interface CreateTableUseCase{
 export interface CreateTableOptions{
     base: number;
     limit?: number;
-    showTable?: boolean;
-    name?: string;
-    destination?:string;
 }
 
 export class CreateTable{
@@ -21,7 +18,9 @@ export class CreateTable{
         let outputMessage = '';
 
         for (let i = 1; i <= limit; i++) {
-            outputMessage += `${base} * ${i} = ${base * i} \n`;
+            outputMessage += `${base} * ${i} = ${base * i}`;
+
+            if(i < limit ) outputMessage += '\n';
         }
 
         return outputMessage
