@@ -1,0 +1,29 @@
+{
+  "name": "04-multiplication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node src/app.ts -b 6",
+    "dev:nodemon": "nodemon",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/app.js",
+    "table-7": "npx ts-node src/tables.ts -b 7",
+    "table-6": "npx ts-node src/tables.ts -b 6 -s"
+  },
+  "keywords": [],
+  "author": "Jorge Alfaro",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@types/yargs": "^17.0.32",
+    "nodemon": "^3.0.2",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
