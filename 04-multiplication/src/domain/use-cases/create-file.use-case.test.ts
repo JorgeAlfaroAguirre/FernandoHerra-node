@@ -8,6 +8,7 @@ describe(`use-cases / create-file.use-case.test`, () => {
         const table = createTable.execute({base:5});
         const rows = table.split('\n');
 
+        expect(createTable).toBeInstanceOf(CreateTable);
         expect(rows.length).toBe(10);
         expect( table ).toContain( '5 * 1 = 5') 
         expect( table ).toContain( '5 * 10 = 50') 

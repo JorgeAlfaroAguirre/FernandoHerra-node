@@ -34,7 +34,7 @@ describe('SaveFileUseCase', () => {
     }
 
     const result = saveFile.execute(options);
-    const fileExists = fs.existsSync(filePath); // ojo
+    const fileExists = fs.existsSync(filePath); 
     const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
     
     expect( result ).toBe( true );

@@ -35,7 +35,7 @@ describe(`plugins / args.plugin.test`, () => {
 
         const argv = await runCommand(['-b','8', '-l', '20', '-s', '-n',  'custom-table', '-d', 'custom-dir']);
 
-        console.log(argv);
+        // console.log(argv);
 
         expect(argv).toEqual(expect.objectContaining({
             b: 8,
@@ -45,4 +45,5 @@ describe(`plugins / args.plugin.test`, () => {
             d: 'custom-dir',
         }));
     });
+
 }); 
