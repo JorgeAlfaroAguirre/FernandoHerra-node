@@ -29,7 +29,7 @@ export class CheckService implements CheckServiceUseCase{
             }
 
             const log = new LogEntity( {
-                message: `Servbice ${url} working`, 
+                message: `Service ${url} working`, 
                 level: LogSeverityLevel.low,
                 origin: 'check-service.ts',
             });

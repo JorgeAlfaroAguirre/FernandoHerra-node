@@ -1,12 +1,14 @@
 import { CheckService } from "../domain/use-cases/checks/check-service";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 import { FileSystemDatasource } from "../infraestructure/datasources/file.system.datasources";
+import { MongoLogDatasource } from "../infraestructure/datasources/mongo-log.datasource";
 import { LogRepositoryImpl } from "../infraestructure/repository/log.repository.impl";
 import { CronService } from "./cron/cron-service";
 import { EmailService } from "./email/email.service";
 
-const FileSystemRepository = new LogRepositoryImpl( 
+const logRepository = new LogRepositoryImpl( 
     new FileSystemDatasource()
+    // new MongoLogDatasource(),/*  */
 )
 const emailService = new EmailService();
 
@@ -16,10 +18,10 @@ export class Server{
 
         console.log('Server started...');
         
-        new SendEmailLogs(
+/*         new SendEmailLogs(
             emailService,
-            FileSystemRepository
-        ).execute(['jorgealfaroaguirre@gmail.com'])
+            logRepository
+        ).execute(['jorgealfaroaguirre@gmail.com']) */
 
         // const emailService = new EmailService(
         //     FileSystemRepository
@@ -41,9 +43,9 @@ export class Server{
             '*/5 * * * * *',
             ()=>{
 
-                const url = 'http://localhost:3000/';
+                const url = 'http://google.com';
                 new CheckService(
-                  FileSystemRepository,
+                    logRepository,
                   () => console.log( `${ url } is ok` ),
                   ( error ) => console.log( error ),
                 ).execute( url );;
